@@ -41,347 +41,272 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
 📚 Contenido del Curso
 A continuación, tienes el temario completo, optimizado para SEO, con una breve descripción de cada módulo.
 
-1. Introducción
-Fundamentos del curso, estructura del repositorio y visión general de lo que construiremos: una Web API empresarial, escalable, totalmente testeada y lista para producción.
+**1. Introducción**
 
-2. Configurando el entorno
-Aprenderás a configurar el entorno de desarrollo profesional:
+    Fundamentos del curso, estructura del repositorio y visión general de lo que construiremos: una Web API empresarial, escalable, totalmente testeada y lista para producción.
 
 
-.NET SDK
+**2. Configurando el entorno**
 
+    Aprenderás a configurar el entorno de desarrollo profesional:
 
-Visual Studio / VS Code
+    .NET SDK
 
+    Visual Studio / VS Code
 
-SQL Server
+    SQL Server
 
+    Docker
 
-Docker
+    Postman
 
+    Git / GitHub
 
-Postman
 
+**3. Introducción a Web API y verbos HTTP**
+    
+    Conceptos esenciales:
 
-Git / GitHub
+    Arquitectura REST
 
+    Verbos HTTP (GET, POST, PUT, DELETE, PATCH)
 
+    Códigos de estado
 
-3. Introducción a Web API y verbos HTTP
-Conceptos esenciales:
+    Buenas prácticas en diseño de endpoints
 
 
-Arquitectura REST
+**4. Nuestra primera API REST**
 
+    Tu primera Web API real con .NET Core 10, siguiendo buenas prácticas desde el principio.
 
-Verbos HTTP (GET, POST, PUT, DELETE, PATCH)
 
+**5. Fundamentos de ASP.NET Core Web API**
 
-Códigos de estado
+    Explicación en profundidad del pipeline:
 
+    Controllers
 
-Buenas prácticas en diseño de endpoints
+    Routing
 
+    Middleware
 
-4. Nuestra primera API REST
-Tu primera Web API real con .NET Core 10, siguiendo buenas prácticas desde el principio.
+    Model Binding
 
+    Data Annotations
 
-5. Fundamentos de ASP.NET Core Web API
-Explicación en profundidad del pipeline:
+    Manejo de errores
 
+    Minimal API (MicroServicios)
 
-Controllers
 
+**6. Configuraciones de nuestra aplicación**
 
-Routing
+    Configurar correctamente:
 
+    appsettings
 
-Middleware
+    Variables de entorno
 
+    Inyección de dependencias
 
-Model Binding
+    Logging
 
+    Entornos (Development / Production)
 
-Data Annotations
 
+**7. Introducción a Docker**
 
-Manejo de errores
+    Aprenderás:
 
+    Qué es Docker y por qué es clave para backend
 
+    Crear imágenes de .NET
 
-6. Configuraciones de nuestra aplicación
-Configurar correctamente:
+    Crear contenedores
 
+    Dockerfile para Web APIs
 
-appsettings
+    Docker Compose para entornos completos
 
 
-Variables de entorno
+**8. Acceso a Base de Datos SQL Server**
 
+    Uso de Entity Framework Core:
 
-Inyección de dependencias
+    DbContext
 
+    Migraciones
 
-Logging
+    Consultas LINQ
 
+    Patrón Repository (cuando sí / cuando no)
 
-Entornos (Development / Production)
+    Cliente Web Api con Blazor Server
 
+    Relación entre entidades
 
+    Seeds
 
-7. Introducción a Docker
-Aprenderás:
+    Buenas prácticas de acceso a datos
 
+    SignalR con aplicaciones en tiempo real
 
-Qué es Docker y por qué es clave para backend
+    Cliente SignalR WebSockets con Blazor WebAssembly
 
 
-Crear imágenes de .NET
+**9. Testeo Unitario**
 
+    Aprende testing profesional con:
 
-Crear contenedores
+    MSTest
 
+    NSubstitute
 
-Dockerfile para Web APIs
+    AAA (Arrange–Act–Assert)
 
+    Mocks, Stubs y Fakes
 
-Docker Compose para entornos completos
+    Testear controladores y servicios
 
 
+**10. Testeo de Integración**
 
-8. Acceso a Base de Datos SQL Server
-Uso de Entity Framework Core:
+    Pruebas reales de tu API con:
 
+    WebApplicationFactory
 
-DbContext
+    Base de datos en memoria
 
+    Testear endpoints
 
-Migraciones
+    Validar HTTP status + payloads
 
+    Probar escenarios completos
 
-Consultas LINQ
 
+**11. Testeo E2E con Postman**
 
-Patrón Repository (cuando sí / cuando no)
+    Automatiza tu API como si fueras un cliente real:
 
+    Colecciones Postman
 
-Relación entre entidades
+    Tests automáticos con JavaScript
 
+    Variables, entornos y flujos
 
-Seeds
+    Newman para CI/CD
 
 
-Buenas prácticas de acceso a datos
+**12. Seguridad con Autenticación y Autorización JWT**
 
+    Módulo crítico:
 
+    Qué es JWT
 
-9. Testeo Unitario
-Aprende testing profesional con:
+    Flujo de Login
 
+    Roles, Claims y Policies
 
-MSTest
+    Autorización basada en Claims
 
+    Seguridad para producción
 
-NSubstitute
 
+**13. Introducción a la gestión de la caché con Redis**
+    
+    Aceleración real de APIs:
 
-AAA (Arrange–Act–Assert)
+    Qué es Redis
 
+    TTL & expiraciones
 
-Mocks, Stubs y Fakes
+    Cache-Aside pattern
 
+    IDistributedCache
 
-Testear controladores y servicios
+    Serialización
 
+    Caché para listas y entidades
 
+    Redis CLI y RedisInsight
 
-10. Testeo de Integración
-Pruebas reales de tu API con:
 
+**14. Despliegues**
 
-WebApplicationFactory
+    Aprende a desplegar tu API como un profesional:
 
+    dotnet publish
 
-Base de datos en memoria o SQLite
+    Despliegue manual en Linux
 
+    Docker y Docker Compose para servicios externos
 
-Testear endpoints
+    Azure App Service
 
+    Variables de entorno seguras
 
-Validar HTTP status + payloads
 
+**15. Proyecto Final con Arquitectura DDD**
 
-Probar escenarios completos
+    Construcción de una API empresarial real con:
 
+    Domain-Driven Design
 
+    Capas: Domain, Application, Infrastructure, API
 
-11. Testeo E2E con Postman
-Automatiza tu API como si fueras un cliente real:
+    Entidades, Value Objects, Aggregates
 
+    Reglas de negocio
 
-Colecciones Postman
+    Testing completo
 
-
-Tests automáticos con JavaScript
-
-
-Variables, entornos y flujos
-
-
-Newman para CI/CD
-
-
-
-12. Seguridad con Autenticación y Autorización JWT
-Módulo crítico:
-
-
-Qué es JWT
-
-
-Flujo de Login
-
-
-Roles, Claims y Policies
-
-
-Autorización basada en Claims
-
-
-Refresh Tokens
-
-
-Seguridad para producción
-
-
-
-13. Introducción a la gestión de la caché con Redis
-Aceleración real de APIs:
-
-
-Qué es Redis
-
-
-TTL & expiraciones
-
-
-Cache-Aside pattern
-
-
-IDistributedCache
-
-
-Serialización
-
-
-Caché para listas y entidades
-
-
-Redis CLI y RedisInsight
-
-
-
-14. Despliegues
-Aprende a desplegar tu API como un profesional:
-
-
-dotnet publish
-
-
-Despliegue manual en Linux
-
-
-Docker y Docker Compose para servicios externos
-
-
-Azure App Service
-
-
-Variables de entorno seguras
-
-
-
-15. Proyecto Final con Arquitectura DDD
-Construcción de una API empresarial real con:
-
-
-Domain-Driven Design
-
-
-Capas: Domain, Application, Infrastructure, API
-
-
-Entidades, Value Objects, Aggregates
-
-
-Reglas de negocio
-
-
-Testing completo
-
-
-Caché, seguridad, despliegue y Docker
+    Caché, seguridad, despliegue y Docker
 
 
 
 🧰 Tecnologías utilizadas
 
+    .NET 10 Web API
 
-.NET 10 Web API
+    C# 14
 
+    SQL Server & EF Core
 
-C# 14
+    Docker & Docker Compose
 
+    Redis
 
-SQL Server & EF Core
+    MSTest & NSubstitute
 
+    Postman & Newman
 
-Docker & Docker Compose
+    JWT Authentication
 
-
-Redis
-
-
-MSTest & NSubstitute
-
-
-Postman & Newman
-
-
-JWT Authentication
-
-
-DDD Architecture
+    DDD Architecture
 
 
 🎓 Objetivo del curso
-Que termines dominando:
 
+    Que termines dominando:
 
-Cómo construir APIs modernas en .NET
+    Cómo construir APIs modernas en .NET
 
+    Cómo testearlas correctamente
 
-Cómo testearlas correctamente
+    Cómo hacerlas seguras
 
+    Cómo escalar con Redis
 
-Cómo hacerlas seguras
+    Cómo desplegar con Azure
 
+    Cómo pensar como un arquitecto backend
 
-Cómo escalar con Redis
-
-
-Cómo desplegar con Azure
-
-
-Cómo pensar como un arquitecto backend
-
-
-Y crear tu propio backend profesional listo para producción.
+    Y crear tu propio backend profesional listo para producción.
 
 🤝 Contribuciones
-Las contribuciones, issues y mejoras son bienvenidas.
-Este repositorio evoluciona con el curso.
+    Las contribuciones, issues y mejoras son bienvenidas.
+    Este repositorio evoluciona con el curso.
 
 📄 Licencia
-MIT License.
+    MIT License.
