@@ -1,4 +1,5 @@
-🚀 Curso Completo de .NET Core 10 Web API — Testing, Seguridad, Redis, Docker, Deployments y Arquitectura DDD
+**🚀 Curso Completo de .NET Core 10 Web API — Testing, Seguridad, Redis, Docker, Deployments y Arquitectura DDD**
+
 Bienvenido/a al repositorio oficial del Curso Completo de ASP.NET Core 10 Web API, un recorrido profesional y totalmente práctico para aprender a construir APIs reales, modernas, seguras, testeadas y listas para producción.
 Este repositorio contiene todo el código del curso, organizado por módulos, con ejemplos reales de:
 
@@ -39,7 +40,6 @@ Perfecto si quieres aprender los fundamentos antes de entrar al curso completo:
 https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwGKaV
 
 📚 Contenido del Curso
-A continuación, tienes el temario completo, optimizado para SEO, con una breve descripción de cada módulo.
 
 **1. Introducción**
 
