@@ -1,0 +1,57 @@
+@MyFirstWebApi_HostAddress = http://localhost:5176
+
+
+### Obtener todas las tareas
+GET {{MyFirstWebApi_HostAddress}}/todo
+Accept: application/json
+
+###
+
+### Obtener una tarea por ID
+GET {{MyFirstWebApi_HostAddress}}/todo/1
+Accept: application/json
+
+###
+
+### Crear una nueva tarea
+POST {{MyFirstWebApi_HostAddress}}/todo
+Content-Type: application/json
+
+{
+  "title": "Aprender .NET 9",
+  "isCompleted": false
+}
+
+###
+
+### Crear otra tarea
+POST {{MyFirstWebApi_HostAddress}}/todo
+Content-Type: application/json
+
+{
+  "title": "Preparar ejercicio Web API",
+  "isCompleted": false
+}
+
+###
+
+### Actualizar una tarea existente
+PUT {{MyFirstWebApi_HostAddress}}/todo/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "Aprender ASP.NET Core 9",
+  "isCompleted": true
+}
+
+###
+
+### Eliminar una tarea
+DELETE {{MyFirstWebApi_HostAddress}}/todo/2
+
+###
+
+### Intentar obtener una tarea no existente
+GET {{MyFirstWebApi_HostAddress}}/todo/999
+Accept: application/json
