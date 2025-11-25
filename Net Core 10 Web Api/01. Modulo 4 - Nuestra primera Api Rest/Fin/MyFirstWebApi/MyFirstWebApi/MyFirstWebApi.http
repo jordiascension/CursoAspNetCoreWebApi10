@@ -1,20 +1,20 @@
-@MyFirstWebApi_HostAddress = http://localhost:5176
+@MyFirstWebApi_HostAddress = http://localhost:5254
 
 
 ### Obtener todas las tareas
-GET {{MyFirstWebApi_HostAddress}}/todo
+GET {{MyFirstWebApi_HostAddress}}/api/todoitem
 Accept: application/json
 
 ###
 
 ### Obtener una tarea por ID
-GET {{MyFirstWebApi_HostAddress}}/todo/1
+GET {{MyFirstWebApi_HostAddress}}/api/todoitem/1
 Accept: application/json
 
 ###
 
 ### Crear una nueva tarea
-POST {{MyFirstWebApi_HostAddress}}/todo
+POST {{MyFirstWebApi_HostAddress}}/api/todoitem
 Content-Type: application/json
 
 {
@@ -25,7 +25,7 @@ Content-Type: application/json
 ###
 
 ### Crear otra tarea
-POST {{MyFirstWebApi_HostAddress}}/todo
+POST {{MyFirstWebApi_HostAddress}}/api/todoitem
 Content-Type: application/json
 
 {
@@ -36,7 +36,7 @@ Content-Type: application/json
 ###
 
 ### Actualizar una tarea existente
-PUT {{MyFirstWebApi_HostAddress}}/todo/1
+PUT {{MyFirstWebApi_HostAddress}}/api/todoitem/1
 Content-Type: application/json
 
 {
@@ -48,10 +48,11 @@ Content-Type: application/json
 ###
 
 ### Eliminar una tarea
-DELETE {{MyFirstWebApi_HostAddress}}/todo/2
+DELETE {{MyFirstWebApi_HostAddress}}/api/todoitem/2
 
 ###
 
 ### Intentar obtener una tarea no existente
-GET {{MyFirstWebApi_HostAddress}}/todo/999
+GET {{MyFirstWebApi_HostAddress}}/api/todoitem/999
 Accept: application/json
+
