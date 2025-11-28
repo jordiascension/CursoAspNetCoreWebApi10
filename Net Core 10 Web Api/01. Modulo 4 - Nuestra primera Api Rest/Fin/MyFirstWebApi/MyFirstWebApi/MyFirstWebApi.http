@@ -1,58 +1,44 @@
 @MyFirstWebApi_HostAddress = http://localhost:5254
 
-
-### Obtener todas las tareas
+### Get all TodoItems
 GET {{MyFirstWebApi_HostAddress}}/api/todoitem
 Accept: application/json
 
-###
-
-### Obtener una tarea por ID
+### Get a TodoItem by ID
 GET {{MyFirstWebApi_HostAddress}}/api/todoitem/1
 Accept: application/json
 
-###
-
-### Crear una nueva tarea
+### Create a new TodoItem
 POST {{MyFirstWebApi_HostAddress}}/api/todoitem
 Content-Type: application/json
 
 {
-  "title": "Aprender .NET 9",
+  "title": "Learn .NET 9",
   "isCompleted": false
 }
 
-###
-
-### Crear otra tarea
+### Create another TodoItem
 POST {{MyFirstWebApi_HostAddress}}/api/todoitem
 Content-Type: application/json
 
 {
-  "title": "Preparar ejercicio Web API",
+  "title": "Prepare Web API exercise",
   "isCompleted": false
 }
 
-###
-
-### Actualizar una tarea existente
+### Update an existing TodoItem
 PUT {{MyFirstWebApi_HostAddress}}/api/todoitem/1
 Content-Type: application/json
 
 {
   "id": 1,
-  "title": "Aprender ASP.NET Core 9",
+  "title": "Learn ASP.NET Core 9",
   "isCompleted": true
 }
 
-###
-
-### Eliminar una tarea
+### Delete a TodoItem
 DELETE {{MyFirstWebApi_HostAddress}}/api/todoitem/2
 
-###
-
-### Intentar obtener una tarea no existente
+### Try to get a non-existing TodoItem
 GET {{MyFirstWebApi_HostAddress}}/api/todoitem/999
 Accept: application/json
-
