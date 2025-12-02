@@ -1,0 +1,146 @@
+﻿@page "/"
+@using MyFirstWebApi.BlazorApp.Model
+@rendermode InteractiveServer
+@inject IHttpClientFactory HttpClientFactory
+
+<h3>Todo Items</h3>
+
+<!-- Create Form -->
+<div style="margin-bottom:20px;">
+    <input placeholder="Title" @bind="newTitle" />
+    <input type="checkbox" @bind="newIsCompleted" /> Completed
+    <button @onclick="CreateTodo">Add</button>
+</div>
+
+<!-- Grid -->
+<table border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Completed?</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in todoItems)
+        {
+            if (editId == item.Id)
+            {
+                <!-- EDIT MODE -->
+                <tr>
+                    <td>@item.Id</td>
+                    <td><input @bind="editTitle" /></td>
+                    <td><input type="checkbox" @bind="editIsCompleted" /></td>
+                    <td>
+                        <button @onclick="() => SaveEdit(item.Id)">Save</button>
+                        <button @onclick="CancelEdit">Cancel</button>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <!-- READ MODE -->
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Title</td>
+                    <td>@item.IsCompleted</td>
+                    <td>
+                        <button @onclick="() => StartEdit(item)">Edit</button>
+                        <button @onclick="() => DeleteTodo(item.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<TodoItem> todoItems = new();
+    private string newTitle = "";
+    private bool newIsCompleted = false;
+
+    // Edit state
+    private int editId = 0;
+    private string editTitle = "";
+    private bool editIsCompleted = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadTodos();
+    }
+
+    private HttpClient CreateClient()
+       => HttpClientFactory.CreateClient("MyFirstWebApi");
+
+    private async Task LoadTodos()
+    {
+        var client = CreateClient();
+        var result = await client.GetFromJsonAsync<List<TodoItem>>("todoitem");
+        todoItems = result ?? new List<TodoItem>();
+    }
+
+    private async Task CreateTodo()
+    {
+        var client = CreateClient();
+
+        var newItem = new TodoItem
+        {
+            Title = newTitle,
+            IsCompleted = newIsCompleted
+        };
+
+        var response = await client.PostAsJsonAsync("todoitem", newItem);
+
+        if (response.IsSuccessStatusCode)
+        {
+            newTitle = "";
+            newIsCompleted = false;
+            await LoadTodos();
+        }
+    }
+
+    private void StartEdit(TodoItem item)
+    {
+        editId = item.Id;
+        editTitle = item.Title!;
+        editIsCompleted = item.IsCompleted;
+    }
+
+    private void CancelEdit()
+    {
+        editId = 0;
+    }
+
+    private async Task SaveEdit(int id)
+    {
+        var client = CreateClient();
+
+        var updated = new TodoItem
+        {
+            Id = id,
+            Title = editTitle,
+            IsCompleted = editIsCompleted
+        };
+
+        var response = await client.PutAsJsonAsync($"todoitem/{id}", updated);
+
+        if (response.IsSuccessStatusCode)
+        {
+            editId = 0;
+            await LoadTodos();
+        }
+    }
+
+    private async Task DeleteTodo(int id)
+    {
+        var client = HttpClientFactory.CreateClient("MyFirstWebApi");
+
+        var response = await client.DeleteAsync($"todoitem/{id}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadTodos();
+        }
+    }
+}
