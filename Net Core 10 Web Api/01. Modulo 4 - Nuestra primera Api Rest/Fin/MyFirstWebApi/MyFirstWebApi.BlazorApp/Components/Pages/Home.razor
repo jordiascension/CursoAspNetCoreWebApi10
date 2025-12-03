@@ -134,7 +134,7 @@
 
     private async Task DeleteTodo(int id)
     {
-        var client = HttpClientFactory.CreateClient("MyFirstWebApi");
+        var client = CreateClient();
 
         var response = await client.DeleteAsync($"todoitem/{id}");
 
