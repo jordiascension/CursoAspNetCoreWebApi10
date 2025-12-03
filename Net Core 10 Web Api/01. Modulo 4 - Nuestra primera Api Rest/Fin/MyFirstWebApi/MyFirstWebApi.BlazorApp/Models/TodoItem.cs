@@ -1,4 +1,4 @@
-﻿namespace MyFirstWebApi.BlazorApp.Model
+﻿namespace MyFirstWebApi.BlazorApp.Models
 {
     public class TodoItem
     {
