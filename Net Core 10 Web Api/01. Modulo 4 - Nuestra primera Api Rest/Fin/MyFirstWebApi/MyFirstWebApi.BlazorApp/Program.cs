@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Register HttpClientFactory
 builder.Services.AddHttpClient("MyFirstWebApi", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5254/api/"); // API URL
+    client.BaseAddress = new Uri("https://localhost:7177/api/"); // API URL
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
