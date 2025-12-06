@@ -114,8 +114,19 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
 
     Entornos (Development / Production)
 
+**7. Real Time Apis**
 
-**7. Introducción a Docker**
+    Aprenderás:
+
+    Creación de Apis que gestionan Datos en tiempo real
+
+    Gestionar WebSockets con SignalR
+
+    Ejecutar Tareas Programadas en Segundo plano con Hosted Services
+    
+    Consumir Apis con WebSockets con Blazor WebAssembly y SignalR
+
+**8. Introducción a Docker**
 
     Aprenderás:
 
@@ -130,7 +141,7 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
     Docker Compose para entornos completos
 
 
-**8. Acceso a Base de Datos SQL Server**
+**9. Acceso a Base de Datos SQL Server**
 
     Uso de Entity Framework Core:
 
@@ -150,12 +161,8 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
 
     Buenas prácticas de acceso a datos
 
-    SignalR con aplicaciones en tiempo real
 
-    Cliente SignalR WebSockets con Blazor WebAssembly
-
-
-**9. Testeo Unitario**
+**10. Testeo Unitario**
 
     Aprende testing profesional con:
 
@@ -170,7 +177,7 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
     Testear controladores y servicios
 
 
-**10. Testeo de Integración**
+**11. Testeo de Integración**
 
     Pruebas reales de tu API con:
 
@@ -185,7 +192,7 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
     Probar escenarios completos
 
 
-**11. Testeo E2E con Postman**
+**12. Testeo E2E con Postman**
 
     Automatiza tu API como si fueras un cliente real:
 
@@ -198,7 +205,7 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
     Newman para CI/CD
 
 
-**12. Seguridad con Autenticación y Autorización JWT**
+**13. Seguridad con Autenticación y Autorización JWT**
 
     Módulo crítico:
 
@@ -213,7 +220,7 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
     Seguridad para producción
 
 
-**13. Introducción a la gestión de la caché con Redis**
+**14. Introducción a la gestión de la caché con Redis**
     
     Aceleración real de APIs:
 
@@ -232,7 +239,7 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
     Redis CLI y RedisInsight
 
 
-**14. Despliegues**
+**15. Despliegues**
 
     Aprende a desplegar tu API como un profesional:
 
@@ -247,7 +254,7 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
     Variables de entorno seguras
 
 
-**15. Proyecto Final con Arquitectura DDD**
+**16. Proyecto Final con Arquitectura DDD**
 
     Construcción de una API empresarial real con:
 
