@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="CryptoApi/CryptoApi.csproj" />
+  <Project Path="CryptoClient/CryptoClient.csproj" Id="2089996e-cda3-43a4-95d8-1d1330e70ec6" />
 </Solution>

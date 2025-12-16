@@ -1,0 +1,111 @@
+﻿@page "/"
+@inject ICryptoService CryptoService
+@implements IDisposable
+
+<PageTitle>Cryptos</PageTitle>
+
+<RadzenDataGrid 
+                Data="@_sorted"
+                TItem="CryptoPriceItem"
+                AllowPaging="false"
+                AllowSorting="false"
+                FilterMode="FilterMode.Simple"
+                Style="width:100%">
+    <Columns>
+        <RadzenDataGridColumn TItem="CryptoPriceItem" Property="Id" Title="Id" Width="90px" />
+
+        <RadzenDataGridColumn TItem="CryptoPriceItem" Title="Moneda" Width="250px" CssClass="font-weight: bold;">
+            <Template Context="item">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="width:36px; height:36px; display:flex; align-items:center; justify-content:center;">
+                        @((MarkupString)GetSvgForId(item.Id))
+                    </div>
+                    <div>
+                        <div style="font-weight:600">@item.Name</div>
+                        <div style="font-size:0.85rem; color:var(--rz-secondary-text)">@item.Symbol</div>
+                    </div>
+                </div>
+            </Template>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="CryptoPriceItem" Property="PriceUsd" Title="Precio" Width="140px">
+            <Template Context="item">
+                @item.PriceUsd.ToString("C2", @EsEs)
+            </Template>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="CryptoPriceItem" Title="Cambio 24 horas" Width="160px">
+            <Template Context="item">
+                @{
+                    var baseline = item.BaselinePriceUsd;                    
+                    var changePercentatge = baseline == 0m ? 0m : ((item.PriceUsd - baseline) / baseline) * 100m;
+                    var sign = changePercentatge >= 0m ? "+" : "";
+                    var changeColor = changePercentatge >= 0m ? "green" : "red";
+                }
+                <div style="font-weight:600; color:@changeColor;">@($"{sign}{changePercentatge:F2}%")</div>
+                <div style="font-size:0.85rem; color:gray;">
+                    @((item.PriceUsd - baseline).ToString("C2", @EsEs))
+                </div>
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+<RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" Gap="2rem" Wrap="FlexWrap.Wrap" class="rz-p-12">
+    <RadzenAppearanceToggle />
+</RadzenStack>
+@code {
+
+    private List<CryptoPriceItem> _sorted = new();
+    private static readonly System.Globalization.CultureInfo EsEs =
+    new("es-ES");
+
+    protected override async Task OnInitializedAsync()
+    {
+        CryptoService.PricesUpdated += OnPricesUpdated;
+
+        // Load initial prices
+        await CryptoService.GetInitialPricesAsync();
+
+        RebuildSorted();
+    }
+
+    private void OnPricesUpdated()
+    {
+        _ = InvokeAsync(() =>
+        {
+            RebuildSorted();
+            StateHasChanged();
+        });
+    }
+
+    private void RebuildSorted()
+    {
+        _sorted = CryptoService.CurrentPrices
+            .OrderByDescending(p => p.PriceUsd)
+            .ToList();
+    }
+
+    public void Dispose()
+    {
+        CryptoService.PricesUpdated -= OnPricesUpdated;
+    }
+
+    private string GetSvgForId(string id)
+    {
+        return id switch
+        {
+            "bitcoin" => "<img src='https://static.crypto.com/token/icons/bitcoin/color_icon.png' width='36' height='36' />",
+            "ethereum" => "<img src='https://static.crypto.com/token/icons/ethereum/color_icon.png' width='36' height='36' />",
+            "solana" => "<img src='https://static.crypto.com/token/icons/solana/color_icon.png' width='36' height='36' />",
+            "litecoin" => "<img src='https://static.crypto.com/token/icons_v2/litecoin/2-1712604308326.png' width='36' height='36' />",
+            "chainlink" => "<img src='https://static.crypto.com/token/icons_v2/chainlink/426-1712604244006.png' width='36' height='36' />",
+            "polkadot" => "<img src='https://static.crypto.com/token/icons_v2/polkadot-new/2511-1712603986310.png' width='36' height='36' />",
+            "ripple" => "<img src='https://static.crypto.com/token/icons_v2/xrp/20-1712605310573.png' width='36' height='36' />",
+            "cardano" => "<img src='https://static.crypto.com/token/icons/cardano/color_icon.png' width='36' height='36' />",
+            "tron" => "<img src='https://static.crypto.com/token/icons/tron/color_icon.png' width='36' height='36' />",
+            "dogecoin" => "<img src='https://static.crypto.com/token/icons/dogecoin/color_icon.png' width='36' height='36' />",
+            _ => $"<img src='https://via.placeholder.com/36?text={id.Substring(0, Math.Min(3, id.Length)).ToUpper()}' width='36' height='36' />"
+        };
+    }
+}
