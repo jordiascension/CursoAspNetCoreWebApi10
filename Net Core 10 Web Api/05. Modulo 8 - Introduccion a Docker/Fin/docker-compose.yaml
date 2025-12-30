@@ -1,0 +1,25 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "ChangeThis_Str0ngP@ssw0rd!"
+      # Optional: set edition (Developer is free for dev/test)
+      MSSQL_PID: "Developer"
+      # Optional: set server collation
+      # MSSQL_COLLATION: "SQL_Latin1_General_CP1_CI_AS"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P \"$${MSSQL_SA_PASSWORD}\" -Q \"SELECT 1\" || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  sqlserver_data:
