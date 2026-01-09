@@ -1,7 +1,13 @@
 ﻿using HealthChecks.UI.Client;
 
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+using School.Extensions;
+using School.Persistence;
+
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +17,12 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+var sqlServerConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services
     .AddHealthChecks()
     .AddSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")!,
+        sqlServerConnectionString!,
         name: "sqlserver",
         timeout: TimeSpan.FromSeconds(5),
         failureStatus: HealthStatus.Unhealthy
@@ -28,6 +36,9 @@ builder.Services
         setup.SetMinimumSecondsBetweenFailureNotifications(60);
     })
     .AddInMemoryStorage();
+
+var cs = sqlServerConnectionString;
+builder.Services.AddDbContext<SchoolContext>(opt => opt.UseSqlServer(cs));
 
 
 var app = builder.Build();
@@ -62,6 +73,19 @@ app.MapHealthChecksUI(options =>
     options.UIPath = "/health-ui";
     options.ApiPath = "/health-ui-api";
 });
+
+// Apply pending migrations on application startup
+/*using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<SchoolContext>();
+    // This will create the database and tables if they do not exist.
+    // If everything is already up to date, it does nothing.
+    db.Database.Migrate(); 
+}*/
+
+// 👇 Migraciones + seed
+await app.InitializeDatabaseAsync();
+
 
 
 app.Run();
