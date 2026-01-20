@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
+using School.Application.Contracts;
 using School.Extensions;
+using School.Infrastructure.UnitOfWork;
 using School.Persistence;
 
 using System;
@@ -40,6 +42,7 @@ builder.Services
 var cs = sqlServerConnectionString;
 builder.Services.AddDbContext<SchoolContext>(opt => opt.UseSqlServer(cs));
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
