@@ -317,3 +317,7 @@ https://www.youtube.com/watch?v=cA7rlsIx6Ps&list=PLgrPTfiI_B-Tv0kWt4rDeRAQPc-wwG
 
 📄 Licencia
     MIT License.
+
+🧪 Test Web Sockets
+    wss://localhost:7037/hubs/crypto
+    {"protocol":"json","version":1}
