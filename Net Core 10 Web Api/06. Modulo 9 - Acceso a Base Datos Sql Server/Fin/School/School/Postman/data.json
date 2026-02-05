@@ -1,0 +1,12 @@
+[
+   {
+      "firstName":"Jordi",
+      "lastName":"Pérez",
+      "dateOfBirth":"2003-05-01T00:00:00"
+   },
+   {
+      "firstName":"Néstor",
+      "lastName":"Hernández",
+      "dateOfBirth":"2003-05-01T00:00:00"
+   }
+]

@@ -1,0 +1,222 @@
+{
+  "info": {
+    "_postman_id": "5857c744-c86c-40af-8b1d-7544727a1a79",
+    "name": "Student Crud",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "617943",
+    "_collection_link": "https://go.postman.co/collection/617943-5857c744-c86c-40af-8b1d-7544727a1a79?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Add New Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\r",
+              "  pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "pm.environment.set(\"StudentId\", jsonData.id);\r",
+              "\r",
+              "console.log(\"StudentId guardado:\", pm.environment.get(\"StudentId\"));"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstName\": \"Alberto\",\r\n    \"lastName\": \"González\",\r\n    \"dateOfBirth\": \"2003-05-01T00:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7245/api/student",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7245",
+          "path": [
+            "api",
+            "student"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Students",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "  pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7245/api/student",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7245",
+          "path": [
+            "api",
+            "student"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Student By Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "  pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7245/api/student/{{StudentId}}",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7245",
+          "path": [
+            "api",
+            "student",
+            "{{StudentId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 204\", function () {\r",
+              "  pm.response.to.have.status(204);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstName\": \"Jordi\",\r\n    \"lastName\": \"González\",\r\n    \"dateOfBirth\": \"2003-05-01T00:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7245/api/student/{{StudentId}}",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7245",
+          "path": [
+            "api",
+            "student",
+            "{{StudentId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 204\", function () {\r",
+              "  pm.response.to.have.status(204);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7245/api/student/{{StudentId}}",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7245",
+          "path": [
+            "api",
+            "student",
+            "{{StudentId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
