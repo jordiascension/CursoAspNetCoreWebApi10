@@ -11,9 +11,10 @@ using System.Collections.Concurrent;
 
 namespace School.Infrastructure.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork, IAsyncDisposable, IDisposable
     {
         private readonly SchoolContext _context;
+        private IDbContextTransaction? _currentTx;
 
         // Cache por tipo de entidad: typeof(T) -> repo instance
         private readonly ConcurrentDictionary<Type, object> _repositories = new();
@@ -36,7 +37,30 @@ namespace School.Infrastructure.UnitOfWork
         public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct = default)
        => _context.Database.BeginTransactionAsync(ct);
 
+        public async Task CommitTransactionAsync(CancellationToken ct = default)
+        {
+            if (_currentTx is null) return;
+
+            await _currentTx.CommitAsync(ct);
+            await _currentTx.DisposeAsync();
+            _currentTx = null;
+        }
+
+        public async Task RollbackTransactionAsync(CancellationToken ct = default)
+        {
+            if (_currentTx is null) return;
+
+            await _currentTx.RollbackAsync(ct);
+            await _currentTx.DisposeAsync();
+            _currentTx = null;
+        }
+
         public void Dispose()
             => _context.Dispose();
+
+        public ValueTask DisposeAsync()
+        =>
+            _context.DisposeAsync();
+        
     }
 }

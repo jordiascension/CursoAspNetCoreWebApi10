@@ -13,5 +13,7 @@ namespace School.Application.Contracts
         Task<int> SaveChangesAsync(CancellationToken ct = default);
 
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct = default);
+        Task CommitTransactionAsync(CancellationToken cancellationToken = default);
+        Task RollbackTransactionAsync(CancellationToken cancellationToken = default);
     }
 }
