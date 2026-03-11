@@ -1,4 +1,4 @@
-@School_HostAddress = http://localhost:5182
+@School_HostAddress = http://localhost:5154
 
 GET {{School_HostAddress}}/weatherforecast/
 Accept: application/json

@@ -1,12 +1,9 @@
-﻿using Microsoft.Build.Tasks.Deployment.Bootstrapper;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 
 using School.Application.Contracts;
 using School.Infrastructure.Repositories;
-using School.Models;
 using School.Persistence;
 
-using System;
 using System.Collections.Concurrent;
 
 namespace School.Infrastructure.UnitOfWork
@@ -14,6 +11,7 @@ namespace School.Infrastructure.UnitOfWork
     public class UnitOfWork : IUnitOfWork, IAsyncDisposable, IDisposable
     {
         private readonly SchoolContext _context;
+
         private IDbContextTransaction? _currentTx;
 
         // Cache por tipo de entidad: typeof(T) -> repo instance
@@ -34,8 +32,7 @@ namespace School.Infrastructure.UnitOfWork
         public Task<int> SaveChangesAsync(CancellationToken ct = default)
             => _context.SaveChangesAsync(ct);
 
-        public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct = default)
-       => _context.Database.BeginTransactionAsync(ct);
+        
 
         public async Task CommitTransactionAsync(CancellationToken ct = default)
         {
@@ -58,9 +55,12 @@ namespace School.Infrastructure.UnitOfWork
         public void Dispose()
             => _context.Dispose();
 
-        public ValueTask DisposeAsync()
-        =>
-            _context.DisposeAsync();
-        
+        public ValueTask DisposeAsync() => _context.DisposeAsync();
+
+        public async Task BeginTransactionAsync(CancellationToken ct = default)
+        {
+            if (_currentTx is not null) return; // ya hay una abierta
+            _currentTx = await _context.Database.BeginTransactionAsync(ct);
+        }
     }
 }

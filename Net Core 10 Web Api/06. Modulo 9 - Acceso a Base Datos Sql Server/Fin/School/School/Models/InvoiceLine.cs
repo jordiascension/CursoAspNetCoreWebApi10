@@ -18,9 +18,7 @@
 
         private InvoiceLine() { } // EF Core
 
-        public static InvoiceLine Create(string description,
-                                  decimal quantity, decimal unitPrice,
-                                  VatRate vatRate)
+        public static InvoiceLine Create(string description, decimal quantity, decimal unitPrice, VatRate vatRate)
         {
             var lineBase = Round2(quantity * unitPrice);
             var vatAmount = Round2(lineBase * ((int)vatRate / 100m));

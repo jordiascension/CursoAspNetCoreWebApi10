@@ -5,18 +5,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 using School.Application.Contracts;
+using School.Application.Implementations;
+using School.Domain.Contracts;
+using School.Domain.Implementations;
 using School.Extensions;
 using School.Infrastructure.UnitOfWork;
 using School.Persistence;
 
-using System;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var sqlServerConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -39,23 +37,20 @@ builder.Services
     })
     .AddInMemoryStorage();
 
-var cs = sqlServerConnectionString;
-builder.Services.AddDbContext<SchoolContext>(opt => opt.UseSqlServer(cs));
-
+builder.Services.AddScoped<IInvoicingAppService, InvoicingAppService>();
+builder.Services.AddScoped<IInvoicingDomainService, InvoicingDomainService>();
+builder.Services.AddDbContext<SchoolContext>(opt => opt.UseSqlServer(sqlServerConnectionString));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 // ✅ Endpoint para UI y para Docker/K8s (formato correcto UI)
@@ -77,18 +72,7 @@ app.MapHealthChecksUI(options =>
     options.ApiPath = "/health-ui-api";
 });
 
-// Apply pending migrations on application startup
-/*using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<SchoolContext>();
-    // This will create the database and tables if they do not exist.
-    // If everything is already up to date, it does nothing.
-    db.Database.Migrate(); 
-}*/
-
 // 👇 Migraciones + seed
 await app.InitializeDatabaseAsync();
-
-
 
 app.Run();

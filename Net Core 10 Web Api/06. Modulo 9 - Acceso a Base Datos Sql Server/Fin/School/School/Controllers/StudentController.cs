@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using School.Application.Contracts;
 using School.Models;
 
-using static School.Api.Contracts.StudentDtos;
+using static School.Apis.Contracts.StudentDtos;
 
 namespace School.Controllers
 {
@@ -65,7 +65,8 @@ namespace School.Controllers
         ✔️ 201 si se crea
         */
         [HttpPost]
-        public async Task<ActionResult<StudentDto>> Create([FromBody] StudentCreateDto dto, CancellationToken ct)
+        public async Task<ActionResult<StudentDto>> Create([FromBody] StudentCreateDto dto,
+                                                        CancellationToken ct)
         {
             // Validación básica: DOB no puede ser futura
             if (dto.DateOfBirth.Date > DateTime.UtcNow.Date)

@@ -1,8 +1,6 @@
 ﻿using School.Models;
 using School.Persistence;
 
-using System;
-
 namespace School.Extensions
 {
     public static class DbSeeder

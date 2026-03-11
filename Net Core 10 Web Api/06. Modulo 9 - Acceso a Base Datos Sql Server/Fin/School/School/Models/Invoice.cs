@@ -19,8 +19,7 @@
             Date = date;
         }
 
-        public void AddLine(string description, decimal quantity, 
-                            decimal unitPrice, VatRate vatRate)
+        public void AddLine(string description, decimal quantity, decimal unitPrice, VatRate vatRate)
         {
             if (string.IsNullOrWhiteSpace(description))
                 throw new ArgumentException("Description is required.");

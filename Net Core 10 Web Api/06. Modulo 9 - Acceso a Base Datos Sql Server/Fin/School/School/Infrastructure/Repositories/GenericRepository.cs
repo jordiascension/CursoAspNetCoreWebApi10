@@ -3,8 +3,6 @@
 using School.Application.Contracts;
 using School.Persistence;
 
-using System;
-
 namespace School.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class

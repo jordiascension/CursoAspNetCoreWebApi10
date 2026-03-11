@@ -1,0 +1,40 @@
+{
+  "info": {
+    "_postman_id": "87add53f-d329-459b-aa6f-aff47ad02b5b",
+    "name": "Invoice Transaction",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "617943",
+    "_collection_link": "https://go.postman.co/collection/617943-87add53f-d329-459b-aa6f-aff47ad02b5b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Add Invoice",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"date\": \"2026-03-04T00:00:00\",\r\n  \"lines\": [\r\n    {\r\n      \"description\": \"Laptop\",\r\n      \"quantity\": 1,\r\n      \"unitPrice\": 1200,\r\n      \"vatRate\": 21\r\n    },\r\n    {\r\n      \"description\": \"Mouse\",\r\n      \"quantity\": 2,\r\n      \"unitPrice\": 25,\r\n      \"vatRate\": 21\r\n    }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7245/api/invoice",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7245",
+          "path": [
+            "api",
+            "invoice"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
